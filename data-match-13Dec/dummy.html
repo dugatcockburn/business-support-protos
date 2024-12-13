@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Data Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        header {
+            background: #00449e;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .framework, .data-display, .demo {
+            margin-bottom: 30px;
+        }
+        h1, h2 {
+            color: #00449e;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .highlight {
+            background-color: #f8f9fa;
+            padding: 5px;
+        }
+        button {
+            background-color: #00449e;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0066cc;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Business Data Structure Demo</h1>
+</header>
+<div class="content">
+    <section class="framework">
+        <h2>The Framework</h2>
+        <div>
+            <p><strong>Empathy Map:</strong> Provides an emotional connection to the Business Decision Maker (BDM), enabling personalized design, communication, and nudging.</p>
+            <p><strong>Business Plan:</strong> Enables programmatic assessment of business intent, allowing efficient triage by sector, maturity, geography, etc.</p>
+            <p><strong>Value Proposition:</strong> Helps evaluate the likelihood of business success programmatically, identifying improvable areas based on pain/gain matches.</p>
+            <p><strong>Business Model Canvas:</strong> Highlights specific needs (resources, geography, etc.) that can guide targeted support or market matchmaking.</p>
+            <p><strong>Opportunities for DBT Support:</strong> Detailed interviews reveal opportunities for support based on business descriptions.</p>
+        </div>
+    </section>
+
+    <section class="data-display">
+        <h2>Business Data</h2>
+        <div id="data-container">
+            <p>Select a participant to view details:</p>
+            <button onclick="displayData(0)">Alice Johnson</button>
+            <button onclick="displayData(1)">Michael Evans</button>
+            <button onclick="displayData(2)">Sophia Patel</button>
+            <button onclick="displayData(3)">Liam O'Connor</button>
+        </div>
+        <div id="participant-details" class="card"></div>
+    </section>
+
+    <section class="demo">
+        <h2>Interactive Demo</h2>
+        <p>Simulate triage based on the business data:</p>
+        <button onclick="runDemo()">Run Triage Demo</button>
+        <div id="demo-result" class="card"></div>
+    </section>
+</div>
+<script>
+    const businessData = [
+
+  {
+    "Participant": "BDM001",
+    "EmpathyMap": {
+      "Name": "Alice Johnson",
+      "Role": "Founder & CEO",
+      "Situation": "Launching a sustainable fashion brand targeting Gen Z consumers",
+      "WhatTheyNeedToDo": {
+        "Tasks": ["Secure funding", "Launch e-commerce platform"],
+        "Decisions": ["Choose ethical suppliers", "Select marketing strategies"],
+        "SuccessMetrics": ["Revenue growth", "Brand awareness"]
+      },
+      "WhatTheySee": {
+        "Marketplace": ["Established competitors like Patagonia"],
+        "Environment": ["Increased demand for sustainable products"],
+        "Others": ["Trends in influencer marketing"]
+      },
+      "WhatTheySay": ["'We want to revolutionize fashion sustainability.'"],
+      "WhatTheyDo": ["Attend green business events", "Pitch to investors"],
+      "WhatTheyHear": {
+        "FromOthers": ["'Your brand needs a unique selling point.'"],
+        "SecondHandSources": ["Reports on Gen Z purchasing behaviors"]
+      },
+      "WhatTheyThinkAndFeel": {
+        "Fears": ["Supply chain delays"],
+        "Frustrations": ["High initial costs"],
+        "Anxieties": ["Attracting early adopters"],
+        "Wants": ["Affordable, ethical production"],
+        "Needs": ["Reliable suppliers", "Marketing expertise"],
+        "Hopes": ["Become a market leader"],
+        "Dreams": ["Global recognition as a sustainable brand"]
+      }
+    },
+    "BusinessPlan": {
+      "TheMarketProblem": {
+        "Question": "What problem are you solving?",
+        "Answer": "Fast fashion’s environmental impact"
+      },
+      "YourSolution": {
+        "Question": "What is your solution?",
+        "Answer": "Eco-friendly, stylish apparel made from recycled materials"
+      },
+      "SalesAndMarketing": {
+        "Questions": ["How will you reach your audience?"],
+        "Answers": ["Social media campaigns, influencer collaborations"]
+      },
+      "TargetMarket": {
+        "Question": "Who is your target market?",
+        "Answer": "Gen Z and millennials interested in sustainable fashion"
+      },
+      "Milestones": {
+        "Question": "What are your key milestones?",
+        "Answers": ["Launch website in Q2", "Secure $500k funding by Q3"]
+      },
+      "Competitors": {
+        "Question": "Who are your competitors?",
+        "Answer": "Brands like Patagonia and Allbirds"
+      },
+      "Budgets": {
+        "Question": "What are your financial projections?",
+        "Costs": 1000000,
+        "Income": 2000000
+      },
+      "Team": {
+        "Question": "Who is involved?",
+        "Answer": "3 co-founders, 5 full-time employees"
+      }
+    },
+    "BusinessModelCanvas": {
+      "CustomerSegments": ["Gen Z and millennials interested in sustainable fashion"],
+      "ValuePropositions": ["Eco-friendly, stylish apparel made from recycled materials"],
+      "Channels": ["E-commerce platform", "Social media"],
+      "CustomerRelationships": ["Social media engagement", "Email marketing campaigns"],
+      "RevenueStreams": ["Direct sales through website", "Subscription boxes for loyal customers"],
+      "KeyResources": ["Recycled materials suppliers", "In-house design team"],
+      "KeyActivities": ["Designing sustainable clothing", "Managing production and supply chain"],
+      "KeyPartnerships": ["Ethical manufacturers", "Recycling facilities"],
+      "CostStructure": ["Material costs", "Production costs", "Marketing expenses"]
+    },
+    "ValueProposition": {
+      "TargetCustomerSegments": ["Eco-conscious young adults"],
+      "CustomerSegment": {
+        "CustomerJobs": ["Look stylish", "Reduce environmental impact"],
+        "CustomerPainPoints": ["Expensive sustainable options", "Limited designs"],
+        "CustomerGains": ["Affordable pricing", "Unique styles"]
+      },
+      "ValueProposition": {
+        "ProductsAndServices": ["Clothing made from upcycled materials"],
+        "PainRelievers": ["Lower costs with sustainable options"],
+        "GainCreators": ["Trendy designs with environmental benefits"]
+      }
+    },
+    "OpportunitiesForDBTEcosystem": {
+      "Offer": {
+        "SupportNeeded": ["Supplier introductions", "Funding opportunities"],
+        "DBTSupport": ["Trade show grants", "Mentorship programs"]
+      },
+      "Customer": {
+        "SupportNeeded": ["Target market research"],
+        "DBTSupport": ["Industry insights reports"]
+      },
+      "Operations": {
+        "SupportNeeded": ["Supply chain optimization"],
+        "DBTSupport": ["Logistics training"]
+      },
+      "Finance": {
+        "SupportNeeded": ["Investor matchmaking"],
+        "DBTSupport": ["Pitch deck consultations"]
+      }
+    }
+  },
+  {
+    "Participant": "BDM002",
+    "EmpathyMap": {
+      "Name": "Michael Evans",
+      "Role": "CTO",
+      "Situation": "Developing a SaaS tool for small law firms",
+      "WhatTheyNeedToDo": {
+        "Tasks": ["Build MVP", "Secure pilot customers"],
+        "Decisions": ["Tech stack selection", "Pricing model"],
+        "SuccessMetrics": ["Customer retention", "Revenue per customer"]
+      },
+      "WhatTheySee": {
+        "Marketplace": ["Emerging legal tech startups"],
+        "Environment": ["Growing demand for digital transformation in law"],
+        "Others": ["Increased investment in legal tech"]
+      },
+      "WhatTheySay": ["'We need to simplify workflows for small firms.'"],
+      "WhatTheyDo": ["Network with legal professionals", "Demo product at events"],
+      "WhatTheyHear": {
+        "FromOthers": ["'Cost is a barrier for small firms.'"],
+        "SecondHandSources": ["Tech adoption reports"]
+      },
+      "WhatTheyThinkAndFeel": {
+        "Fears": ["Market saturation"],
+        "Frustrations": ["Limited resources for development"],
+        "Anxieties": ["Pricing too high for target market"],
+        "Wants": ["Efficient development process"],
+        "Needs": ["User feedback", "Beta testers"],
+        "Hopes": ["Adoption by top law firms"],
+        "Dreams": ["Expand globally within 5 years"]
+      }
+    },
+    "BusinessPlan": {
+      "TheMarketProblem": {
+        "Question": "What problem are you solving?",
+        "Answer": "Inefficiency in legal workflow management for small firms"
+      },
+      "YourSolution": {
+        "Question": "What is your solution?",
+        "Answer": "A cloud-based tool for managing case files, billing, and scheduling"
+      },
+      "SalesAndMarketing": {
+        "Questions": ["How will you acquire customers?"],
+        "Answers": ["Direct outreach, partnerships with bar associations"]
+      },
+      "TargetMarket": {
+        "Question": "Who is your target market?",
+        "Answer": "Small law firms with 1-10 employees"
+      },
+      "Milestones": {
+        "Question": "What are your key milestones?",
+        "Answers": ["Launch beta by Q3", "Sign 10 pilot customers by Q4"]
+      },
+      "Competitors": {
+        "Question": "Who are your competitors?",
+        "Answer": "Clio, MyCase"
+      },
+      "Budgets": {
+        "Question": "What are your financial projections?",
+        "Costs": 500000,
+        "Income": 1200000
+      },
+      "Team": {
+        "Question": "Who is involved?",
+        "Answer": "5 developers, 1 UX designer"
+      }
+    },
+    "BusinessModelCanvas": {
+      "CustomerSegments": ["Small law firms with 1-10 employees"],
+      "ValuePropositions": ["Affordable, cloud-based legal workflow management tool"],
+      "Channels": ["Direct sales outreach", "Partnerships with bar associations"],
+      "CustomerRelationships": ["Customer success managers", "Online help desk"],
+      "RevenueStreams": ["Monthly SaaS subscriptions", "Annual licensing options"],
+      "KeyResources": ["Software development team", "Cloud hosting infrastructure"],
+      "KeyActivities": ["Developing and maintaining the SaaS tool", "Providing customer support"],
+      "KeyPartnerships": ["Bar associations", "Legal tech communities"],
+      "CostStructure": ["Developer salaries", "Cloud hosting costs", "Marketing and sales"]
+    },
+    "ValueProposition": {
+      "TargetCustomerSegments": ["Small law firms"],
+      "CustomerSegment": {
+        "CustomerJobs": ["Manage cases", "Simplify billing"],
+        "CustomerPainPoints": ["Manual processes", "High cost of existing tools"],
+        "CustomerGains": ["Time savings", "Cost-effective solutions"]
+      },
+      "ValueProposition": {
+        "ProductsAndServices": ["Legal workflow SaaS"],
+        "PainRelievers": ["Lower subscription fees"],
+        "GainCreators": ["Streamlined case management"]
+      }
+    },
+    "OpportunitiesForDBTEcosystem": {
+      "Offer": {
+        "SupportNeeded": ["Tech accelerator programs"],
+        "DBTSupport": ["Grants for R&D"]
+      },
+      "Customer": {
+        "SupportNeeded": ["Feedback on usability"],
+        "DBTSupport": ["Focus groups"]
+      },
+      "Operations": {
+        "SupportNeeded": ["Scalable cloud infrastructure"],
+        "DBTSupport": ["AWS partnership discounts"]
+      },
+      "Finance": {
+        "SupportNeeded": ["Seed funding"],
+        "DBTSupport": ["Investor connections"]
+      }
+    }
+  },
+  {
+    "Participant": "BDM003",
+    "EmpathyMap": {
+      "Name": "Sophia Patel",
+      "Role": "Owner",
+      "Situation": "Scaling a gourmet meal delivery service",
+      "WhatTheyNeedToDo": {
+        "Tasks": ["Expand delivery zones", "Streamline operations"],
+        "Decisions": ["Invest in new logistics software", "Hire additional kitchen staff"],
+        "SuccessMetrics": ["Customer satisfaction", "On-time delivery rates"]
+      },
+      "WhatTheySee": {
+        "Marketplace": ["Competitors like HelloFresh"],
+        "Environment": ["Growing demand for convenient, healthy meals"],
+        "Others": ["Rising operational costs"]
+      },
+      "WhatTheySay": ["'We want to deliver fresh meals, not frozen compromises.'"],
+      "WhatTheyDo": ["Promote business through social media", "Experiment with seasonal menus"],
+      "WhatTheyHear": {
+        "FromOthers": ["'Your service is great, but delivery takes too long.'"],
+        "SecondHandSources": ["Industry reports on food delivery trends"]
+      },
+      "WhatTheyThinkAndFeel": {
+        "Fears": ["Delivery delays harming reputation"],
+        "Frustrations": ["High competition in the market"],
+        "Anxieties": ["Rising food and fuel prices"],
+        "Wants": ["Reliable delivery systems"],
+        "Needs": ["Operational support", "Customer feedback mechanisms"],
+        "Hopes": ["Expand to new cities"],
+        "Dreams": ["Be the go-to gourmet meal service nationwide"]
+      }
+    },
+    "BusinessPlan": {
+      "TheMarketProblem": {
+        "Question": "What problem are you solving?",
+        "Answer": "Busy professionals lack access to fresh, healthy meal options"
+      },
+      "YourSolution": {
+        "Question": "What is your solution?",
+        "Answer": "Delivering gourmet, ready-to-eat meals made fresh daily"
+      },
+      "SalesAndMarketing": {
+        "Questions": ["How will you reach your customers?"],
+        "Answers": ["Digital ads, social media, local partnerships"]
+      },
+      "TargetMarket": {
+        "Question": "Who is your target market?",
+        "Answer": "Professionals and families in urban areas"
+      },
+      "Milestones": {
+        "Question": "What are your key milestones?",
+        "Answers": ["Reach 5,000 active customers by Q4", "Open a second kitchen by next year"]
+      },
+      "Competitors": {
+        "Question": "Who are your competitors?",
+        "Answer": "HelloFresh, Blue Apron, local meal prep services"
+      },
+      "Budgets": {
+        "Question": "What are your financial projections?",
+        "Costs": 750000,
+        "Income": 2000000
+      },
+      "Team": {
+        "Question": "Who is involved?",
+        "Answer": "10 kitchen staff, 5 drivers, 2 marketing specialists"
+      }
+    },
+    "BusinessModelCanvas": {
+      "CustomerSegments": ["Urban professionals", "Busy families"],
+      "ValuePropositions": ["Fresh, ready-to-eat meals delivered daily"],
+      "Channels": ["Company website", "Mobile app", "Social media"],
+      "CustomerRelationships": ["Customer loyalty programs", "Feedback surveys"],
+      "RevenueStreams": ["Meal subscription plans", "One-time orders"],
+      "KeyResources": ["Commercial kitchen", "Delivery fleet", "Seasonal menu developers"],
+      "KeyActivities": ["Meal preparation", "Order delivery", "Menu curation"],
+      "KeyPartnerships": ["Local farmers", "Sustainable packaging suppliers"],
+      "CostStructure": ["Ingredient costs", "Delivery expenses", "Kitchen staff wages"]
+    },
+    "ValueProposition": {
+      "TargetCustomerSegments": ["Urban professionals, busy families"],
+      "CustomerSegment": {
+        "CustomerJobs": ["Eat healthy meals conveniently"],
+        "CustomerPainPoints": ["Lack of time to cook", "Unhealthy fast-food alternatives"],
+        "CustomerGains": ["Time savings", "High-quality, fresh meals"]
+      },
+      "ValueProposition": {
+        "ProductsAndServices": ["Fresh, ready-to-eat meals"],
+        "PainRelievers": ["Quick delivery options"],
+        "GainCreators": ["Premium ingredients, chef-inspired recipes"]
+      }
+    },
+    "OpportunitiesForDBTEcosystem": {
+      "Offer": {
+        "SupportNeeded": ["Logistics and delivery optimisation"],
+        "DBTSupport": ["Technology grants, workforce training"]
+      },
+      "Customer": {
+        "SupportNeeded": ["Market expansion advice"],
+        "DBTSupport": ["Networking events with local businesses"]
+      },
+      "Operations": {
+        "SupportNeeded": ["Efficient kitchen operations"],
+        "DBTSupport": ["Process improvement workshops"]
+      },
+      "Finance": {
+        "SupportNeeded": ["Scaling capital"],
+        "DBTSupport": ["Access to small business loans"]
+      }
+    }
+  },
+  {
+    "Participant": "BDM004",
+    "EmpathyMap": {
+      "Name": "Liam O'Connor",
+      "Role": "Managing Director",
+      "Situation": "Launching a renewable energy consulting firm",
+      "WhatTheyNeedToDo": {
+        "Tasks": ["Build client portfolio", "Establish partnerships"],
+        "Decisions": ["Which markets to prioritise", "Service pricing structure"],
+        "SuccessMetrics": ["Revenue growth", "Client acquisition rate"]
+      },
+      "WhatTheySee": {
+        "Marketplace": ["Growing government interest in renewable energy"],
+        "Environment": ["Favourable policies for green energy"],
+        "Others": ["Competitors targeting corporate clients"]
+      },
+      "WhatTheySay": ["'Businesses need help transitioning to green energy.'"],
+      "WhatTheyDo": ["Attend renewable energy expos", "Publish white papers"],
+      "WhatTheyHear": {
+        "FromOthers": ["'Regulations are confusing and ever-changing.'"],
+        "SecondHandSources": ["Policy briefings, industry newsletters"]
+      },
+      "WhatTheyThinkAndFeel": {
+        "Fears": ["Inability to secure first clients"],
+        "Frustrations": ["High upfront costs for certifications"],
+        "Anxieties": ["Skepticism about renewables in certain sectors"],
+        "Wants": ["Clear guidance on regulations"],
+        "Needs": ["Industry connections", "Marketing expertise"],
+        "Hopes": ["Help SMEs go green"],
+        "Dreams": ["Be a leader in renewable energy consultancy"]
+      }
+    },
+    "BusinessPlan": {
+      "TheMarketProblem": {
+        "Question": "What problem are you solving?",
+        "Answer": "Businesses struggle to navigate the transition to renewable energy"
+      },
+      "YourSolution": {
+        "Question": "What is your solution?",
+        "Answer": "Expert consultancy on renewable energy solutions and compliance"
+      },
+      "SalesAndMarketing": {
+        "Questions": ["How will you attract clients?"],
+        "Answers": ["Direct outreach to SMEs, online content marketing"]
+      },
+      "TargetMarket": {
+        "Question": "Who is your target market?",
+        "Answer": "SMEs looking to adopt renewable energy solutions"
+      },
+      "Milestones": {
+        "Question": "What are your key milestones?",
+        "Answers": ["Sign first 5 clients by Q3", "Break even by year-end"]
+      },
+      "Competitors": {
+        "Question": "Who are your competitors?",
+        "Answer": "Established energy consultancy firms"
+      },
+      "Budgets": {
+        "Question": "What are your financial projections?",
+        "Costs": 300000,
+        "Income": 750000
+      },
+      "Team": {
+        "Question": "Who is involved?",
+        "Answer": "3 consultants, 1 marketing lead"
+      }
+    },
+    "BusinessModelCanvas": {
+      "CustomerSegments": ["SMEs transitioning to renewable energy"],
+      "ValuePropositions": ["Tailored renewable energy transition plans and compliance support"],
+      "Channels": ["Direct outreach to SMEs", "Online content marketing"],
+      "CustomerRelationships": ["Client workshops", "Personalised consultancy"],
+      "RevenueStreams": ["Consulting fees", "Recurring service contracts"],
+      "KeyResources": ["Expert consultants", "Access to energy efficiency tools"],
+      "KeyActivities": ["Energy audits", "Developing transition plans", "Regulatory compliance training"],
+      "KeyPartnerships": ["Renewable energy suppliers", "Government green initiatives"],
+      "CostStructure": ["Consultant salaries", "Marketing expenses", "Certification costs"]
+    },
+    "ValueProposition": {
+      "TargetCustomerSegments": ["SMEs in industrial sectors"],
+      "CustomerSegment": {
+        "CustomerJobs": ["Adopt renewable energy"],
+        "CustomerPainPoints": ["High costs, regulatory confusion"],
+        "CustomerGains": ["Reduced energy costs, compliance support"]
+      },
+      "ValueProposition": {
+        "ProductsAndServices": ["Renewable energy consultancy"],
+        "PainRelievers": ["Guidance on subsidies and grants"],
+        "GainCreators": ["Tailored transition plans"]
+      }
+    },
+    "OpportunitiesForDBTEcosystem": {
+      "Offer": {
+        "SupportNeeded": ["Certification assistance"],
+        "DBTSupport": ["Subsidy advisory services"]
+      },
+      "Customer": {
+        "SupportNeeded": ["SME engagement strategies"],
+        "DBTSupport": ["Workshops on green energy"]
+      },
+      "Operations": {
+        "SupportNeeded": ["Process standardisation"],
+        "DBTSupport": ["ISO certification training"]
+      },
+      "Finance": {
+        "SupportNeeded": ["Access to capital"],
+        "DBTSupport": ["Green energy loans"]
+      }
+    }
+  }
+
+    ];
+
+    function displayData(index) {
+        const participant = businessData[index];
+        const details = `
+            <h3>${participant.EmpathyMap.Name} - ${participant.EmpathyMap.Role}</h3>
+            <p><strong>Situation:</strong> ${participant.EmpathyMap.Situation}</p>
+            <p><strong>Key Tasks:</strong> ${participant.EmpathyMap.WhatTheyNeedToDo.Tasks.join(", ")}</p>
+            <p><strong>Value Proposition:</strong> ${participant.ValueProposition.ValueProposition.ProductsAndServices.join(", ")}</p>
+            <p><strong>Target Market:</strong> ${participant.BusinessPlan.TargetMarket.Answer}</p>
+        `;
+        document.getElementById('participant-details').innerHTML = details;
+    }
+
+    function runDemo() {
+        const results = businessData.map((participant, index) => {
+            if (participant.BusinessPlan.TargetMarket.Answer.includes("SMEs")) {
+                return `<p><strong>${participant.EmpathyMap.Name}:</strong> Match for SME-targeted government grants.</p>`;
+            }
+            if (participant.BusinessModelCanvas.Channels.includes("E-commerce platform")) {
+                return `<p><strong>${participant.EmpathyMap.Name}:</strong> Match for digital business accelerator program.</p>`;
+            }
+            return `<p><strong>${participant.EmpathyMap.Name}:</strong> No specific program matched.</p>`;
+        }).join("");
+        document.getElementById('demo-result').innerHTML = results;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>data structure of business decision makers - test</title>
+</head>
+
+<body>
+
+
+<!-- empathy data -->
+
+<section id="empathy-map">
+  <h2>Empathy Map</h2>
+  <div class="filters">
+    <h3>Filters</h3>
+    <form>
+      <label><input type="checkbox" name="emotions" value="frustrated"> Frustrated</label><br>
+      <label><input type="checkbox" name="emotions" value="hopeful"> Hopeful</label><br>
+      <label><input type="checkbox" name="emotions" value="confused"> Confused</label><br>
+      <label><input type="checkbox" name="emotions" value="motivated"> Motivated</label>
+    </form>
+  </div>
+  <div class="results">
+    <h3>Suggested Adjustments</h3>
+    <p>If the BDM is <em>frustrated</em>, recommend simplifying onboarding steps and clarifying terms.</p>
+    <p>If the BDM is <em>motivated</em>, recommend providing access to growth-oriented services like mentorship programs.</p>
+  </div>
+</section>
+
+
+<!-- Business plan data -->
+
+<section id="business-plan">
+  <h2>Business Plan Analysis</h2>
+  <div class="filters">
+    <h3>Filters</h3>
+    <form>
+      <label for="sector">Sector:</label>
+      <select id="sector" name="sector">
+        <option value="tech">Technology</option>
+        <option value="retail">Retail</option>
+        <option value="manufacturing">Manufacturing</option>
+      </select><br>
+      <label for="maturity">Maturity:</label>
+      <select id="maturity" name="maturity">
+        <option value="startup">Startup</option>
+        <option value="scaling">Scaling</option>
+        <option value="established">Established</option>
+      </select><br>
+      <label for="geography">Geography:</label>
+      <input type="text" id="geography" name="geography" placeholder="e.g., London, Scotland">
+    </form>
+  </div>
+  <div class="results">
+    <h3>Recommended Services</h3>
+    <ul>
+      <li><a href="#">Tech Startup Mentorship Program</a></li>
+      <li><a href="#">Retail Scaling Toolkit</a></li>
+      <li><a href="#">Local Manufacturing Grants</a></li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- Value proposition data -->
+
+<section id="value-proposition">
+  <h2>Value Proposition Analysis</h2>
+  <div class="input-area">
+    <h3>Enter Data</h3>
+    <label for="pain">Pain Points:</label><br>
+    <textarea id="pain" placeholder="List pain points here..."></textarea><br>
+    <label for="gain">Gain Points:</label><br>
+    <textarea id="gain" placeholder="List gain points here..."></textarea>
+  </div>
+  <div class="results">
+    <h3>Analysis Results</h3>
+    <p><strong>Success Likelihood:</strong> 70%</p>
+    <p><strong>Recommendation:</strong> Focus on addressing 'lack of funding' pain point by applying for grants.</p>
+  </div>
+</section>
+
+
+<!-- Business model data -->
+
+<section id="business-model-canvas">
+  <h2>Business Model Canvas</h2>
+  <div class="canvas-grid">
+    <div class="canvas-box" data-category="key-partners">Key Partners</div>
+    <div class="canvas-box" data-category="key-activities">Key Activities</div>
+    <div class="canvas-box" data-category="value-propositions">Value Propositions</div>
+    <!-- Add all 9 boxes -->
+  </div>
+  <div class="results">
+    <h3>Support Suggestions</h3>
+    <p>Selected: <strong>Key Activities</strong></p>
+    <ul>
+      <li><a href="#">Market Entry Workshops</a></li>
+      <li><a href="#">Business Resource Planning Tools</a></li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- add inline javascript as need to fit demo in one txt file as no cli at work and remote IDEs and other servers blocked by IT -->
+
+<script type="text/javascript">
+  
+  particpantData = [
+  {
+    "Participant": "BDM001",
+    "EmpathyMap": {
+      "Name": "Alice Johnson",
+      "Role": "Founder & CEO",
+      "Situation": "Launching a sustainable fashion brand targeting Gen Z consumers",
+      "WhatTheyNeedToDo": {
+        "Tasks": ["Secure funding", "Launch e-commerce platform"],
+        "Decisions": ["Choose ethical suppliers", "Select marketing strategies"],
+        "SuccessMetrics": ["Revenue growth", "Brand awareness"]
+      },
+      "WhatTheySee": {
+        "Marketplace": ["Established competitors like Patagonia"],
+        "Environment": ["Increased demand for sustainable products"],
+        "Others": ["Trends in influencer marketing"]
+      },
+      "WhatTheySay": ["'We want to revolutionize fashion sustainability.'"],
+      "WhatTheyDo": ["Attend green business events", "Pitch to investors"],
+      "WhatTheyHear": {
+        "FromOthers": ["'Your brand needs a unique selling point.'"],
+        "SecondHandSources": ["Reports on Gen Z purchasing behaviors"]
+      },
+      "WhatTheyThinkAndFeel": {
+        "Fears": ["Supply chain delays"],
+        "Frustrations": ["High initial costs"],
+        "Anxieties": ["Attracting early adopters"],
+        "Wants": ["Affordable, ethical production"],
+        "Needs": ["Reliable suppliers", "Marketing expertise"],
+        "Hopes": ["Become a market leader"],
+        "Dreams": ["Global recognition as a sustainable brand"]
+      }
+    },
+    "BusinessPlan": {
+      "TheMarketProblem": {
+        "Question": "What problem are you solving?",
+        "Answer": "Fast fashion’s environmental impact"
+      },
+      "YourSolution": {
+        "Question": "What is your solution?",
+        "Answer": "Eco-friendly, stylish apparel made from recycled materials"
+      },
+      "SalesAndMarketing": {
+        "Questions": ["How will you reach your audience?"],
+        "Answers": ["Social media campaigns, influencer collaborations"]
+      },
+      "TargetMarket": {
+        "Question": "Who is your target market?",
+        "Answer": "Gen Z and millennials interested in sustainable fashion"
+      },
+      "Milestones": {
+        "Question": "What are your key milestones?",
+        "Answers": ["Launch website in Q2", "Secure $500k funding by Q3"]
+      },
+      "Competitors": {
+        "Question": "Who are your competitors?",
+        "Answer": "Brands like Patagonia and Allbirds"
+      },
+      "Budgets": {
+        "Question": "What are your financial projections?",
+        "Costs": 1000000,
+        "Income": 2000000
+      },
+      "Team": {
+        "Question": "Who is involved?",
+        "Answer": "3 co-founders, 5 full-time employees"
+      }
+    },
+    "BusinessModelCanvas": {
+      "CustomerSegments": ["Gen Z and millennials interested in sustainable fashion"],
+      "ValuePropositions": ["Eco-friendly, stylish apparel made from recycled materials"],
+      "Channels": ["E-commerce platform", "Social media"],
+      "CustomerRelationships": ["Social media engagement", "Email marketing campaigns"],
+      "RevenueStreams": ["Direct sales through website", "Subscription boxes for loyal customers"],
+      "KeyResources": ["Recycled materials suppliers", "In-house design team"],
+      "KeyActivities": ["Designing sustainable clothing", "Managing production and supply chain"],
+      "KeyPartnerships": ["Ethical manufacturers", "Recycling facilities"],
+      "CostStructure": ["Material costs", "Production costs", "Marketing expenses"]
+    },
+    "ValueProposition": {
+      "TargetCustomerSegments": ["Eco-conscious young adults"],
+      "CustomerSegment": {
+        "CustomerJobs": ["Look stylish", "Reduce environmental impact"],
+        "CustomerPainPoints": ["Expensive sustainable options", "Limited designs"],
+        "CustomerGains": ["Affordable pricing", "Unique styles"]
+      },
+      "ValueProposition": {
+        "ProductsAndServices": ["Clothing made from upcycled materials"],
+        "PainRelievers": ["Lower costs with sustainable options"],
+        "GainCreators": ["Trendy designs with environmental benefits"]
+      }
+    },
+    "OpportunitiesForDBTEcosystem": {
+      "Offer": {
+        "SupportNeeded": ["Supplier introductions", "Funding opportunities"],
+        "DBTSupport": ["Trade show grants", "Mentorship programs"]
+      },
+      "Customer": {
+        "SupportNeeded": ["Target market research"],
+        "DBTSupport": ["Industry insights reports"]
+      },
+      "Operations": {
+        "SupportNeeded": ["Supply chain optimization"],
+        "DBTSupport": ["Logistics training"]
+      },
+      "Finance": {
+        "SupportNeeded": ["Investor matchmaking"],
+        "DBTSupport": ["Pitch deck consultations"]
+      }
+    }
+  }
+]
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
